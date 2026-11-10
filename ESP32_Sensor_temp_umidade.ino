@@ -12,9 +12,9 @@ const char* serverUrl = "https://beagle.corechip.com.br/inserir_esp32.php";
 // Nome para identificar este ESP32 no banco de dados MariaDB
 const char* nomeDispositivo = "ESP32_18650_Sleep";
 
-// Configuração do tempo de Deep Sleep (5 minutos)
-// 5 minutos * 60 segundos * 1.000.000 microsegundos
-#define TIME_TO_SLEEP  300               
+// Configuração do tempo de Deep Sleep (20 minutos)
+// 20 minutos * 60 segundos * 1.000.000 microsegundos
+#define TIME_TO_SLEEP  1200               
 #define uS_TO_S_FACTOR 1000000ULL        
 
 void setup() {
@@ -79,10 +79,10 @@ void setup() {
     Serial.println("\nFalha ao conectar ao Wi-Fi. Entrando em modo de espera...");
   }
 
-  // Configurar o timer para acordar após 5 minutos
+  // Configurar o timer para acordar após 20 minutos
   esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
   
-  Serial.println("Entrando em Deep Sleep por 5 minutos...");
+  Serial.println("Entrando em Deep Sleep por 20 minutos...");
   Serial.flush(); 
   
   // Desliga o ESP32 e entra em hibernação profunda
