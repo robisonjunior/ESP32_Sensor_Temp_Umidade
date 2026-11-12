@@ -4,7 +4,7 @@ Este projeto consiste em um sistema de telemetria IoT completo para monitorament
 
 
 
-\## Esquema de Ligação (ESP32 + SHT31)
+## Esquema de Ligação (ESP32 + SHT31)
 
 
 
