@@ -1,10 +1,10 @@
-# 📡 Telemetria IoT Portátil: ESP32 (Deep Sleep) \& BeagleBone Black
+# ðŸ“¡ Telemetria IoT PortÃ¡til: ESP32 (Deep Sleep) \& BeagleBone Black
 
-Este projeto consiste em um sistema de telemetria IoT completo para monitoramento remoto de temperatura e umidade. A arquitetura utiliza um nó sensor sem fio alimentado por bateria de íon-lítio (18650), um servidor web embarcado em uma **BeagleBone Black** e um túnel HTTPS seguro via **Cloudflare Tunnel**.
+Este projeto consiste em um sistema de telemetria IoT completo para monitoramento remoto de temperatura e umidade. A arquitetura utiliza um nÃ³ sensor sem fio alimentado por bateria de Ã­on-lÃ­tio (18650), um servidor web embarcado em uma **BeagleBone Black** e um tÃºnel HTTPS seguro via **Cloudflare Tunnel**.
 
 
 
-\## Esquema de Ligação (ESP32 + SHT31)
+\## Esquema de LigaÃ§Ã£o (ESP32 + SHT31)
 
 
 
@@ -14,44 +14,44 @@ Este projeto consiste em um sistema de telemetria IoT completo para monitorament
 
 \---
 
-## 🏗️ Arquitetura do Sistema
+## ðŸ—ï¸ Arquitetura do Sistema
 
 ```
 \[ ESP32 + Bateria 18650 ] 
-         │  (HTTPS POST / SSL Insecure)
-         ▼
-\[ Cloudflare Tunnel ] ──(Túnel Seguro)──► \[ BeagleBone Black (Debian 12) ]
-                                                   │
-                                     ┌─────────────┴─────────────┐
-                                     ▼                           ▼
+         â”‚  (HTTPS POST / SSL Insecure)
+         â–¼
+\[ Cloudflare Tunnel ] â”€â”€(TÃºnel Seguro)â”€â”€â–º \[ BeagleBone Black (Debian 12) ]
+                                                   â”‚
+                                     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                                     â–¼                           â–¼
                             \[ Apache2 + PHP ]            \[ MariaDB Database ]
                           (inserir\_esp32.php)            (beagle\_db.leituras\_esp32)
 ```
 
 \---
 
-## 🚀 Funcionalidades
+## ðŸš€ Funcionalidades
 
-* **Gerenciamento de Energia:** O ESP32 realiza a leitura dos dados, efetua a requisição HTTPS POST e entra em **Deep Sleep por 5 minutos (300s)**, reduzindo o consumo de corrente a microamperes ($\\mu\\text{A}$) e estendendo a autonomia da bateria 18650.
-* **Comunicação Segura:** Envio de dados criptografados via HTTPS para a BeagleBone Black através do endpoint `https://beagle.corechip.com.br/inserir\_esp32.php`.
-* **Backend Robusto:** Script PHP responsável por validar payloads `x-www-form-urlencoded` ou `JSON` e persistir as leituras no banco de dados MariaDB.
-* **Painel de Visualização:** Interface Web simples na BeagleBone Black para exibição em tempo real do histórico de telemetria.
+* **Gerenciamento de Energia:** O ESP32 realiza a leitura dos dados, efetua a requisiÃ§Ã£o HTTPS POST e entra em **Deep Sleep por 5 minutos (300s)**, reduzindo o consumo de corrente a microamperes ($\\mu\\text{A}$) e estendendo a autonomia da bateria 18650.
+* **ComunicaÃ§Ã£o Segura:** Envio de dados criptografados via HTTPS para a BeagleBone Black atravÃ©s do endpoint `https://beagle.corechip.com.br/inserir\_esp32.php`.
+* **Backend Robusto:** Script PHP responsÃ¡vel por validar payloads `x-www-form-urlencoded` ou `JSON` e persistir as leituras no banco de dados MariaDB.
+* **Painel de VisualizaÃ§Ã£o:** Interface Web simples na BeagleBone Black para exibiÃ§Ã£o em tempo real do histÃ³rico de telemetria.
 
 \---
 
-## 🛠️ Hardware Utilizado
+## ðŸ› ï¸ Hardware Utilizado
 
-* **Nó Remoto:**
+* **NÃ³ Remoto:**
 
-  * Placa de Desenvolvimento **ESP32-WROOM-32** com suporte integrado para 1 célula 18650 e circuito de carga TP4056.
-  * Bateria Íon-Lítio 18650 (3.7V).
+  * Placa de Desenvolvimento **ESP32-WROOM-32** com suporte integrado para 1 cÃ©lula 18650 e circuito de carga TP4056.
+  * Bateria Ãon-LÃ­tio 18650 (3.7V).
 * **Servidor Web / Gateway:**
 
   * Single Board Computer **BeagleBone Black Rev C** rodando Debian 12 (Linux 6.12).
 
 \---
 
-## 💻 Stack de Software \& Dependências
+## ðŸ’» Stack de Software \& DependÃªncias
 
 ### ESP32 (Firmware)
 
@@ -64,11 +64,11 @@ Este projeto consiste em um sistema de telemetria IoT completo para monitorament
 * **Servidor Web:** Apache2
 * **Linguagem:** PHP 8.x
 * **Banco de Dados:** MariaDB (`beagle\_db`)
-* **Túnel DNS/SSL:** Cloudflare Tunnel (`cloudflared`)
+* **TÃºnel DNS/SSL:** Cloudflare Tunnel (`cloudflared`)
 
 \---
 
-## 📋 Estrutura da Tabela MariaDB
+## ðŸ“‹ Estrutura da Tabela MariaDB
 
 ```sql
 CREATE DATABASE IF NOT EXISTS beagle\_db;
@@ -85,9 +85,9 @@ CREATE TABLE IF NOT EXISTS leituras\_esp32 (
 
 \---
 
-## ⚙️ Configuração do ESP32 (Arduino IDE)
+## âš™ï¸ ConfiguraÃ§Ã£o do ESP32 (Arduino IDE)
 
-### 1\. Parâmetros de Compilação / Upload
+### 1\. ParÃ¢metros de CompilaÃ§Ã£o / Upload
 
 * **Board:** `ESP32 Dev Module`
 * **Upload Speed:** `115200` *(Recomendado para estabilidade no chip USB-Serial)*
@@ -96,12 +96,12 @@ CREATE TABLE IF NOT EXISTS leituras\_esp32 (
 ### 2\. Trecho Principal do Firmware (`Deep Sleep`)
 
 ```cpp
-// Tempo de hibernação (5 minutos)
+// Tempo de hibernaÃ§Ã£o (5 minutos)
 #define TIME\_TO\_SLEEP  300               
 #define uS\_TO\_S\_FACTOR 1000000ULL        
 
 void setup() {
-  // Inicialização do Wi-Fi e leitura dos dados...
+  // InicializaÃ§Ã£o do Wi-Fi e leitura dos dados...
   
   // Envio HTTPS POST para o endpoint
   
@@ -117,7 +117,7 @@ void loop() {
 
 \---
 
-## 📌 Licença
+## ðŸ“Œ LicenÃ§a
 
-Este projeto foi desenvolvido para fins didáticos e de prototipagem rápida em engenharia de sistemas embarcados e IoT.
+Este projeto foi desenvolvido para fins didÃ¡ticos e de prototipagem rÃ¡pida em engenharia de sistemas embarcados e IoT.
 
