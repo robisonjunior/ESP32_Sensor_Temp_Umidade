@@ -8,7 +8,8 @@ Este projeto consiste em um sistema de telemetria IoT completo para monitorament
 
 
 
-!\[Diagrama ESP32 e Sensor SHT31](./image\_dbade220.jpg)
+![Diagrama ESP32 e Sensor SHT31](./image_dbade220.jpg)
+
 
 
 
